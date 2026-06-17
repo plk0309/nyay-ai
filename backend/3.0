@@ -1,0 +1,7 @@
+Requirement already satisfied: httpx in d:\nyay-ai\venv\lib\site-packages (0.28.1)
+Requirement already satisfied: httpcore in d:\nyay-ai\venv\lib\site-packages (1.0.9)
+Requirement already satisfied: h11 in d:\nyay-ai\venv\lib\site-packages (0.16.0)
+Requirement already satisfied: idna in d:\nyay-ai\venv\lib\site-packages (3.18)
+Requirement already satisfied: anyio in d:\nyay-ai\venv\lib\site-packages (from httpx) (4.13.0)
+Requirement already satisfied: certifi in d:\nyay-ai\venv\lib\site-packages (from httpx) (2026.5.20)
+Requirement already satisfied: typing_extensions>=4.5 in d:\nyay-ai\venv\lib\site-packages (from anyio->httpx) (4.15.0)

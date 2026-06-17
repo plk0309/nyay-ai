@@ -8,6 +8,7 @@ from database import engine
 from models.user import Base
 from routes.auth import router as auth_router
 from routes.query import router as query_router
+from routes.voice import router as voice_router
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
@@ -28,6 +29,7 @@ app.add_middleware(
 
 app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 app.include_router(query_router, prefix="/query", tags=["Legal Query"])
+app.include_router(voice_router, prefix="/voice", tags=["Voice"])
 
 @app.get("/")
 def root():
