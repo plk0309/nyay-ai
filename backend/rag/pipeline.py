@@ -1,13 +1,13 @@
 # backend/rag/pipeline.py
 import os
-from google import genai
+from groq import Groq
 from rag.retriever import retrieve, rerank
 
-def get_gemini_client():
-    api_key = os.getenv("GEMINI_API_KEY")
+def get_groq_client():
+    api_key = os.getenv("GROQ_API_KEY")
     if not api_key:
-        raise ValueError("GEMINI_API_KEY not set in environment")
-    return genai.Client(api_key=api_key)
+        raise ValueError("GROQ_API_KEY not set in environment")
+    return Groq(api_key=api_key)
 
 def build_prompt(query: str, context_chunks: list[dict], history: list[dict]) -> str:
     context = "\n\n---\n\n".join([
@@ -48,13 +48,16 @@ def answer_query(query: str, history: list[dict] = []) -> dict:
     reranked = rerank(query, retrieved, top_n=3)
 
     # Step 3: Generate
-    client = get_gemini_client()
+    client = get_groq_client()
     prompt = build_prompt(query, reranked, history)
 
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=prompt
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=1024
     )
+
+    answer = response.choices[0].message.content
 
     # Step 4: Build response
     sources = list(set([
@@ -63,7 +66,7 @@ def answer_query(query: str, history: list[dict] = []) -> dict:
     ]))
 
     return {
-        "answer": response.text,
+        "answer": answer,
         "sources": sources,
         "category": reranked[0]["metadata"]["category"] if reranked else "unknown",
         "chunks_used": len(reranked)
