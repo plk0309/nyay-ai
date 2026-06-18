@@ -1,0 +1,14 @@
+{
+  "total_chunks": 6324,
+  "embedding_dim": 384,
+  "model": "all-MiniLM-L6-v2",
+  "chunks_per_category": {
+    "central_laws": 287,
+    "consumer_laws": 293,
+    "criminal_laws": 3415,
+    "cyber_laws": 292,
+    "housing_laws": 1166,
+    "labour_laws": 753,
+    "personal_laws": 118
+  }
+}
