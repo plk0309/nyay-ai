@@ -7,17 +7,21 @@ RUN apt-get update && apt-get install -y \
     g++ \
     && rm -rf /var/lib/apt/lists/*
 
-# Install CPU-only PyTorch first
-RUN pip install --no-cache-dir torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
-
-# Install sentence-transformers after torch
-RUN pip install --no-cache-dir sentence-transformers==3.4.1
-
 COPY requirements.txt .
 
+# Install numpy first to lock version before anything else
+RUN pip install --no-cache-dir numpy==1.26.4
+
+# Install CPU-only PyTorch
+RUN pip install --no-cache-dir torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
+
+# Install remaining requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
+
+# Copy faiss_index from repo root (one level up)
+COPY ../faiss_index ./faiss_index
 
 EXPOSE 8000
 

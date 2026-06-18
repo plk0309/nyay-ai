@@ -13,7 +13,7 @@ langchain-community
 langchain-text-splitters
 langchain-groq
 langchain-huggingface
-faiss-cpu==1.9.0
+faiss-cpu==1.7.4
 pymupdf==1.25.5
 groq
 cohere==7.0.4
@@ -22,5 +22,6 @@ faster-whisper==1.2.1
 gtts==2.5.4
 httpx==0.28.1
 tqdm==4.68.2
-numpy==2.4.6
+numpy==1.26.4
+sentence-transformers==2.7.0
 datasets==3.6.0

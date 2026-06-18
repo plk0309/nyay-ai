@@ -8,8 +8,7 @@ __pycache__/
 venv/
 .env
 
-# FAISS
-faiss_index/
+
 
 # VS Code
 .vscode/
@@ -25,6 +24,6 @@ Thumbs.db
 node_modules/
 dist/
 build/faiss_index/ 
-*.pkl 
+
 __pycache__/ 
 .env 
