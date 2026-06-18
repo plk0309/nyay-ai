@@ -1,4 +1,5 @@
 FROM python:3.12-slim
+# cache-bust: 1
 
 WORKDIR /app
 
@@ -19,9 +20,6 @@ RUN pip install --no-cache-dir torch==2.2.0 --index-url https://download.pytorch
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-
-# Copy faiss_index from repo root (one level up)
-COPY ../faiss_index ./faiss_index
 
 EXPOSE 8000
 
