@@ -18,6 +18,7 @@ export default function Chat() {
   const messagesEndRef = useRef(null)
   const mediaRecorderRef = useRef(null)
   const audioChunksRef = useRef([])
+  const currentAudioRef = useRef(null)
   const { user, token, logout } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
@@ -32,7 +33,6 @@ export default function Chat() {
     }
   }, [])
 
-  // Welcome message
   useEffect(() => {
     setMessages([{
       role: 'assistant',
@@ -120,12 +120,20 @@ export default function Chat() {
 
   const speakAnswer = async (text) => {
     try {
+      // Stop any currently playing audio
+      if (currentAudioRef.current) {
+        currentAudioRef.current.pause()
+        currentAudioRef.current = null
+      }
+
       const formData = new FormData()
       formData.append('text', text.substring(0, 500))
       formData.append('language', language)
       const res = await api.post('/voice/speak', formData, { responseType: 'blob' })
       const url = URL.createObjectURL(res.data)
-      new Audio(url).play()
+      const audio = new Audio(url)
+      currentAudioRef.current = audio
+      audio.play()
     } catch {
       toast.error('Text-to-speech failed')
     }
@@ -169,7 +177,20 @@ export default function Chat() {
         {/* New Chat */}
         <div style={{ padding: '16px' }}>
           <button
-            onClick={() => { setMessages([]); setHistory([]); setTimeout(() => setMessages([{ role: 'assistant', content: 'New conversation started! Ask me any legal question.', sources: [] }]), 100) }}
+            onClick={() => {
+              // Stop any playing audio on new chat
+              if (currentAudioRef.current) {
+                currentAudioRef.current.pause()
+                currentAudioRef.current = null
+              }
+              setMessages([])
+              setHistory([])
+              setTimeout(() => setMessages([{
+                role: 'assistant',
+                content: 'New conversation started! Ask me any legal question.',
+                sources: []
+              }]), 100)
+            }}
             style={{
               width: '100%', padding: '12px 16px',
               background: 'rgba(201,168,76,0.1)',
@@ -272,9 +293,7 @@ export default function Chat() {
             border: '1px solid #2d3748',
             borderRadius: '16px', padding: '12px 16px',
             transition: 'border-color 0.2s'
-          }}
-            onFocus={() => { }}
-          >
+          }}>
             <textarea
               value={input}
               onChange={e => setInput(e.target.value)}
