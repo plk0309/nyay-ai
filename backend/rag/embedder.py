@@ -7,13 +7,17 @@ from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 from config import EMBEDDING_MODEL, FAISS_INDEX_DIR
 
+# Absolute path to faiss_index at repo root
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+FAISS_DIR = os.path.join(BASE_DIR, "faiss_index")
+
 def get_embedder():
     print(f"Loading embedding model: {EMBEDDING_MODEL}")
     return SentenceTransformer(EMBEDDING_MODEL)
 
 def build_and_save_index(chunks: list[dict]):
     """Generate embeddings and save FAISS index"""
-    os.makedirs(FAISS_INDEX_DIR, exist_ok=True)
+    os.makedirs(FAISS_DIR, exist_ok=True)
 
     model = get_embedder()
     texts = [chunk["text"] for chunk in chunks]
@@ -35,9 +39,9 @@ def build_and_save_index(chunks: list[dict]):
     index.add(embeddings)
 
     # Save index
-    index_path = os.path.join(FAISS_INDEX_DIR, "legal.index")
-    chunks_path = os.path.join(FAISS_INDEX_DIR, "chunks.pkl")
-    stats_path = os.path.join(FAISS_INDEX_DIR, "stats.json")
+    index_path = os.path.join(FAISS_DIR, "legal.index")
+    chunks_path = os.path.join(FAISS_DIR, "chunks.pkl")
+    stats_path = os.path.join(FAISS_DIR, "stats.json")
 
     faiss.write_index(index, index_path)
 
@@ -69,11 +73,11 @@ def build_and_save_index(chunks: list[dict]):
 
 def load_index():
     """Load saved FAISS index and chunks"""
-    index_path = os.path.join(FAISS_INDEX_DIR, "legal.index")
-    chunks_path = os.path.join(FAISS_INDEX_DIR, "chunks.pkl")
+    index_path = os.path.join(FAISS_DIR, "legal.index")
+    chunks_path = os.path.join(FAISS_DIR, "chunks.pkl")
 
     if not os.path.exists(index_path):
-        raise FileNotFoundError("FAISS index not found. Run index_builder.py first.")
+        raise FileNotFoundError(f"FAISS index not found at {index_path}. Run index_builder.py first.")
 
     index = faiss.read_index(index_path)
     with open(chunks_path, "rb") as f:
