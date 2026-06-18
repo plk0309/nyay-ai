@@ -1,0 +1,332 @@
+{
+  "summary": {
+    "total_questions": 25,
+    "successful": 25,
+    "avg_answer_relevancy": 0.7381,
+    "avg_retrieval_accuracy": 0.816,
+    "model": "llama-3.1-8b-instant via Groq",
+    "embedding_model": "all-MiniLM-L6-v2",
+    "reranker": "Cohere rerank-english-v3.0",
+    "vector_store": "FAISS IndexFlatIP",
+    "total_indexed_chunks": 6324
+  },
+  "per_question_results": [
+    {
+      "question": "What are the rights of an allottee under RERA?",
+      "answer_preview": "An allottee has several rights under the Real Estate (Regulation and Development) (RERA) Act. \n\nAccording to Section 19(1) of RERA, an allottee is ent...",
+      "answer_relevancy": 0.7191,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 2.59,
+      "sources": [
+        "rera_act.pdf (Page 18)"
+      ]
+    },
+    {
+      "question": "What protection does RERA provide to homebuyers?",
+      "answer_preview": "Based on the RERA Act, it appears the document provided does not give you a complete overview of the RERA (Real Estate (Regulation and Development) Ac...",
+      "answer_relevancy": 0.6795,
+      "retrieval_accuracy": 0.2,
+      "category_correct": false,
+      "latency_seconds": 1.9,
+      "sources": [
+        "up_shops_establishments_act.pdf (Page 12)",
+        "consumer_protection_act_2019.pdf (Page 1)",
+        "rera_act.pdf (Page 29)"
+      ]
+    },
+    {
+      "question": "What are tenant obligations under tenancy law?",
+      "answer_preview": "Unfortunately, the provided legal context does not detail the specific obligations of a tenant under tenancy law. It only mentions that a tenant canno...",
+      "answer_relevancy": 0.7307,
+      "retrieval_accuracy": 0.6,
+      "category_correct": false,
+      "latency_seconds": 1.56,
+      "sources": [
+        "rera_act.pdf (Page 22)",
+        "rera_act.pdf (Page 18)",
+        "bsa_2023.pdf (Page 42)"
+      ]
+    },
+    {
+      "question": "What happens if a promoter fails to give possession under RERA?",
+      "answer_preview": "According to the Real Estate (Regulation and Development) Act (RERA) as per the given legal context:\n\nIf a promoter fails to give possession of an apa...",
+      "answer_relevancy": 0.8743,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 1.64,
+      "sources": [
+        "rera_act.pdf (Page 18)",
+        "rera_act.pdf (Page 17)",
+        "rera_act.pdf (Page 23)"
+      ]
+    },
+    {
+      "question": "What documents must a promoter provide to allottee under RERA?",
+      "answer_preview": "Based on the legal context provided, a promoter is required to provide documents to the allottees or the competent authority, as per the local laws. I...",
+      "answer_relevancy": 0.6532,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 1.53,
+      "sources": [
+        "rera_act.pdf (Page 17)",
+        "rera_act.pdf (Page 9)",
+        "rera_act.pdf (Page 13)"
+      ]
+    },
+    {
+      "question": "How can a consumer file a complaint against a company?",
+      "answer_preview": "According to the Consumer Protection Act, 2019, a consumer can file a complaint against a company for violation of consumer rights, unfair trade pract...",
+      "answer_relevancy": 0.7376,
+      "retrieval_accuracy": 0.8,
+      "category_correct": true,
+      "latency_seconds": 1.51,
+      "sources": [
+        "consumer_protection_act_2019.pdf (Page 13)",
+        "consumer_protection_act_2019.pdf (Page 19)",
+        "consumer_protection_act_2019.pdf (Page 22)"
+      ]
+    },
+    {
+      "question": "What is a consumer dispute under Consumer Protection Act?",
+      "answer_preview": "A \"consumer dispute\" under the Consumer Protection Act, 2019, refers to a dispute where the person against whom a complaint has been made denies or di...",
+      "answer_relevancy": 0.8837,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 1.44,
+      "sources": [
+        "consumer_protection_act_2019.pdf (Page 3)",
+        "rera_act.pdf (Page 31)",
+        "consumer_protection_act_2019.pdf (Page 1)"
+      ]
+    },
+    {
+      "question": "What are unfair trade practices under Consumer Protection Act?",
+      "answer_preview": "Under the Consumer Protection Act, 2019, unfair trade practices include:\n\nAny trade practice that, for the purpose of promoting goods or services, ado...",
+      "answer_relevancy": 0.8859,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 1.65,
+      "sources": [
+        "consumer_protection_act_2019.pdf (Page 13)",
+        "consumer_protection_act_2019.pdf (Page 8)",
+        "consumer_protection_act_2019.pdf (Page 2)"
+      ]
+    },
+    {
+      "question": "What is the role of Central Authority under Consumer Protection Act?",
+      "answer_preview": "The role of the Central Authority under the Consumer Protection Act is to:\n\n1. Regulate matters relating to violation of rights of consumers.\n2. Preve...",
+      "answer_relevancy": 0.7625,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 1.53,
+      "sources": [
+        "consumer_protection_act_2019.pdf (Page 13)",
+        "consumer_protection_act_2019.pdf (Page 11)"
+      ]
+    },
+    {
+      "question": "What is the minimum wage structure under the Minimum Wages Act?",
+      "answer_preview": "According to Section 4 of the Minimum Wages Act, 1948, the minimum rate of wages fixed or revised by the appropriate Government in respect of schedule...",
+      "answer_relevancy": 0.8776,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 1.31,
+      "sources": [
+        "minimum_wages_act.pdf (Page 1)",
+        "minimum_wages_act.pdf (Page 3)",
+        "minimum_wages_act.pdf (Page 15)"
+      ]
+    },
+    {
+      "question": "What are the provisions for EPF contribution?",
+      "answer_preview": "According to the Employees' Provident Fund Act 1952, the following provisions apply to EPF contribution:\n\n1. **Employer's Contribution**: The employer...",
+      "answer_relevancy": 0.7962,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 5.17,
+      "sources": [
+        "epf_act_1952.pdf (Page 25)",
+        "epf_act_1952.pdf (Page 41)",
+        "epf_act_1952.pdf (Page 29)"
+      ]
+    },
+    {
+      "question": "What are worker rights under labour laws?",
+      "answer_preview": "Based on the provided legal context, we can determine the following worker rights under labour laws:\n\n1. The rules made under the U.P. Shops and Estab...",
+      "answer_relevancy": 0.5254,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 5.7,
+      "sources": [
+        "up_shops_establishments_act.pdf (Page 2)",
+        "up_shops_establishments_act.pdf (Page 13)"
+      ]
+    },
+    {
+      "question": "What protection does POSH Act provide to women at workplace?",
+      "answer_preview": "The POSH Act provides protection against sexual harassment of women at workplace from violation of their fundamental rights to equality. \n\nIn particul...",
+      "answer_relevancy": 0.8717,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 1.56,
+      "sources": [
+        "posh_act_2013.pdf (Page 12)",
+        "posh_act_2013.pdf (Page 3)"
+      ]
+    },
+    {
+      "question": "What offences does the POCSO Act cover?",
+      "answer_preview": "According to the context provided, the POCSO Act does not specify explicitly which offences it covers, but it refers to \"penetrative sexual assault\" u...",
+      "answer_relevancy": 0.8239,
+      "retrieval_accuracy": 0.8,
+      "category_correct": true,
+      "latency_seconds": 1.44,
+      "sources": [
+        "pocso_act.pdf (Page 4)",
+        "bsa_2023.pdf (Page 40)",
+        "bnss_2023.pdf (Page 29)"
+      ]
+    },
+    {
+      "question": "What are the key provisions of BNS 2023?",
+      "answer_preview": "Unfortunately, I do not have enough information to answer your question about the key provisions of BNS 2023.\n\nThe context provided only mentions that...",
+      "answer_relevancy": 0.268,
+      "retrieval_accuracy": 0.2,
+      "category_correct": true,
+      "latency_seconds": 1.44,
+      "sources": [
+        "rti_act_2005.pdf (Page 17)",
+        "bsa_2023.pdf (Page 54)"
+      ]
+    },
+    {
+      "question": "What does BNSS 2023 replace and what does it cover?",
+      "answer_preview": "I found information related to BNSS 2023 in the provided context.\n\nUnfortunately, the context only mentions an Attachment for forfeiture or restoratio...",
+      "answer_relevancy": 0.5942,
+      "retrieval_accuracy": 0.0,
+      "category_correct": false,
+      "latency_seconds": 1.47,
+      "sources": [
+        "rti_act_2005.pdf (Page 22)",
+        "epf_act_1952.pdf (Page 28)",
+        "bnss_2023.pdf (Page 47)"
+      ]
+    },
+    {
+      "question": "What is the Bharatiya Sakshya Adhiniyam about?",
+      "answer_preview": "The Bharatiya Sakshya Adhiniyam, 2023 (Act No. 47 of 2023) is an Act to consolidate and provide for general rules and principles of evidence for a fai...",
+      "answer_relevancy": 0.7583,
+      "retrieval_accuracy": 0.8,
+      "category_correct": true,
+      "latency_seconds": 1.33,
+      "sources": [
+        "bsa_2023.pdf (Page 1)",
+        "bsa_2023.pdf (Page 10)",
+        "bnss_2023.pdf (Page 114)"
+      ]
+    },
+    {
+      "question": "What are the penalties under IT Act for hacking?",
+      "answer_preview": "Based on the provided context from the Information Technology Act 2000, the penalty for hacking is not explicitly mentioned under the headings provide...",
+      "answer_relevancy": 0.7371,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 2.2,
+      "sources": [
+        "information_technology_act_2000.pdf (Page 26)",
+        "information_technology_act_2000.pdf (Page 24)",
+        "information_technology_act_2000.pdf (Page 28)"
+      ]
+    },
+    {
+      "question": "What does the IT Act say about electronic records?",
+      "answer_preview": "In the Information Technology Act, 2000, electronic records receive legal recognition. Specifically, sections 4 and 5 state that electronic records sh...",
+      "answer_relevancy": 0.7749,
+      "retrieval_accuracy": 0.8,
+      "category_correct": true,
+      "latency_seconds": 1.79,
+      "sources": [
+        "information_technology_act_2000.pdf (Page 1)",
+        "information_technology_act_2000.pdf (Page 5)",
+        "bsa_2023.pdf (Page 29)"
+      ]
+    },
+    {
+      "question": "What is RTI and how to apply?",
+      "answer_preview": "To answer your question, I need to inform you that the information provided does not contain any details about the Right to Information (RTI) Act. How...",
+      "answer_relevancy": 0.7678,
+      "retrieval_accuracy": 0.2,
+      "category_correct": false,
+      "latency_seconds": 1.52,
+      "sources": [
+        "motor_vehicles_act_1988.pdf (Page 111)",
+        "motor_vehicles_act_1988.pdf (Page 43)",
+        "information_technology_act_2000.pdf (Page 33)"
+      ]
+    },
+    {
+      "question": "Who is a Public Information Officer under RTI Act?",
+      "answer_preview": "A Public Information Officer ( PIO ) under the Right to Information (RTI) Act, 2005, is not explicitly mentioned in the context. However, it can be in...",
+      "answer_relevancy": 0.7413,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 1.53,
+      "sources": [
+        "rti_act_2005.pdf (Page 19)",
+        "rti_act_2005.pdf (Page 6)",
+        "rti_act_2005.pdf (Page 15)"
+      ]
+    },
+    {
+      "question": "What does Hindu Succession Act say about inheritance?",
+      "answer_preview": "Based on the Hindu Succession Act, 1956, the law relating to intestate succession among Hindus is as follows:\n\n* The Act applies to all of India. (Sec...",
+      "answer_relevancy": 0.796,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 2.0,
+      "sources": [
+        "hindu_succession_act_1956.pdf (Page 1)",
+        "hindu_succession_act_1956.pdf (Page 3)",
+        "hindu_succession_act_1956.pdf (Page 10)"
+      ]
+    },
+    {
+      "question": "What are the rights of legal heirs under succession law?",
+      "answer_preview": "Under the Hindu Succession Act, 1956, the rights of legal heirs can be summarized as follows:\n\n- Where the inheritance of property devolves on two or ...",
+      "answer_relevancy": 0.8147,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 5.73,
+      "sources": [
+        "hindu_succession_act_1956.pdf (Page 13)",
+        "hindu_succession_act_1956.pdf (Page 11)"
+      ]
+    },
+    {
+      "question": "What legal recourse does a victim of workplace harassment have?",
+      "answer_preview": "According to the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013, an aggrieved woman can make a complaint of...",
+      "answer_relevancy": 0.5896,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 5.39,
+      "sources": [
+        "posh_act_2013.pdf (Page 8)",
+        "posh_act_2013.pdf (Page 3)",
+        "posh_act_2013.pdf (Page 1)"
+      ]
+    },
+    {
+      "question": "What are the rights of a person arrested under BNSS?",
+      "answer_preview": "According to the given legal context, a person arrested under BNSS has the rights mentioned under sub-section (1) which states that the police officer...",
+      "answer_relevancy": 0.7888,
+      "retrieval_accuracy": 1.0,
+      "category_correct": true,
+      "latency_seconds": 1.51,
+      "sources": [
+        "bnss_2023.pdf (Page 34)",
+        "bnss_2023.pdf (Page 58)"
+      ]
+    }
+  ]
+}
