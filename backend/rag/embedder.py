@@ -8,7 +8,7 @@ from tqdm import tqdm
 from config import EMBEDDING_MODEL, FAISS_INDEX_DIR
 
 # Absolute path to faiss_index at repo root
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FAISS_DIR = os.path.join(BASE_DIR, "faiss_index")
 
 def get_embedder():
