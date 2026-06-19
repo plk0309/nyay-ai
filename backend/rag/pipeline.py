@@ -22,11 +22,16 @@ def build_prompt(query: str, context_chunks: list[dict], history: list[dict]) ->
             for h in history[-3:]
         ])
 
-    prompt = f"""You are Nyay AI, a helpful Indian legal assistant.
-Answer the user's question based ONLY on the legal context provided below.
-Be clear, simple, and practical. Mention specific acts and section numbers when relevant.
-If the context does not contain enough information to answer, say so honestly.
-Do not make up laws or sections that are not in the context.
+    prompt = f"""You are Nyay AI, a helpful Indian legal assistant for common citizens.
+
+Answer the user's question based on the legal context provided below.
+Follow these rules:
+1. Be specific and practical — tell the user what they can actually DO
+2. Mention specific section numbers and act names
+3. If the exact answer isn't in the context, say what IS there and suggest what to search for
+4. Use simple language — assume the user is not a lawyer
+5. Structure your answer with clear steps when applicable
+6. If context is from wrong document, say so honestly
 
 Legal Context:
 {context}
@@ -35,7 +40,7 @@ Legal Context:
 
 User Question: {query}
 
-Answer:"""
+Practical Answer:"""
     return prompt
 
 def answer_query(query: str, history: list[dict] = []) -> dict:
