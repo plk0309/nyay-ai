@@ -7,6 +7,28 @@ import {
 import toast from 'react-hot-toast'
 import api from '../api/axios'
 import { useAuth } from '../context/AuthContext'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
+// Inject Markdown styling once
+if (typeof document !== 'undefined' && !document.getElementById('md-styles')) {
+  const style = document.createElement('style')
+  style.id = 'md-styles'
+  style.textContent = `
+    .msg-markdown p { margin: 0 0 10px 0; }
+    .msg-markdown p:last-child { margin-bottom: 0; }
+    .msg-markdown strong { color: #e8c97e; font-weight: 700; }
+    .msg-markdown ul, .msg-markdown ol { margin: 8px 0; padding-left: 22px; }
+    .msg-markdown li { margin-bottom: 4px; }
+    .msg-markdown table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; }
+    .msg-markdown th, .msg-markdown td { border: 1px solid #2d3748; padding: 8px 10px; text-align: left; }
+    .msg-markdown th { background: rgba(201,168,76,0.15); color: #e8c97e; }
+    .msg-markdown code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+    .msg-markdown h1, .msg-markdown h2, .msg-markdown h3 { margin: 14px 0 8px 0; color: #e8c97e; }
+    .msg-markdown hr { border: none; border-top: 1px solid #2d3748; margin: 14px 0; }
+  `
+  document.head.appendChild(style)
+}
 
 export default function Chat() {
   const [messages, setMessages] = useState([])
@@ -366,17 +388,18 @@ function MessageBubble({ msg, onSpeak }) {
       )}
 
       <div style={{ maxWidth: '75%' }}>
-        <div style={{
+        <div className="msg-markdown" style={{
           padding: '14px 18px',
           background: isUser
             ? 'linear-gradient(135deg, #c9a84c22, #c9a84c11)'
             : '#1a2235',
           border: `1px solid ${isUser ? 'rgba(201,168,76,0.3)' : '#2d3748'}`,
           borderRadius: isUser ? '18px 4px 18px 18px' : '4px 18px 18px 18px',
-          color: '#f1f5f9', fontSize: '15px', lineHeight: '1.7',
-          whiteSpace: 'pre-wrap'
+          color: '#f1f5f9', fontSize: '15px', lineHeight: '1.7'
         }}>
-          {msg.content}
+          {isUser ? msg.content : (
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
+          )}
         </div>
 
         {/* Sources */}

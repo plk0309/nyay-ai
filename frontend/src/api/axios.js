@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'https://nyay-ai-production.up.railway.app',
+  baseURL: import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000',
 })
 
 api.interceptors.request.use((config) => {

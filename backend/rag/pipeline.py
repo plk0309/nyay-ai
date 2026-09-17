@@ -57,7 +57,7 @@ def answer_query(query: str, history: list[dict] = []) -> dict:
     prompt = build_prompt(query, reranked, history)
 
     response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
+                model="openai/gpt-oss-120b",
         messages=[{"role": "user", "content": prompt}],
         max_tokens=1024
     )
