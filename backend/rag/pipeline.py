@@ -59,7 +59,7 @@ def answer_query(query: str, history: list[dict] = []) -> dict:
     response = client.chat.completions.create(
                 model="openai/gpt-oss-120b",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=1024
+        max_tokens=2408
     )
 
     answer = response.choices[0].message.content
