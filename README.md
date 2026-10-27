@@ -83,7 +83,7 @@ Query → Embed (MiniLM-L6-v2) → FAISS Search (top-10)
 | Vector Index      | FAISS IndexFlatIP             |
 | Initial Retrieval | Top-10 chunks                 |
 | After Reranking   | Top-3 chunks                  |
-| LLM               | LLaMA 3.1-8B-Instant via Groq |
+| LLM               | openai/gpt-oss-120b via Groq |
 | Total Chunks      | 9,615                         |
 
 ---
