@@ -4,6 +4,4 @@ __pycache__
 .env
 venv/
 .git
-*.pkl
-*.index
 node_modules
