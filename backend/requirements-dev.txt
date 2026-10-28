@@ -1,0 +1,11 @@
+-r requirements.txt
+langchain
+langchain-community
+langchain-text-splitters
+langchain-groq
+langchain-huggingface
+pymupdf==1.25.5
+sentence-transformers==2.7.0
+datasets==3.6.0
+tqdm==4.68.2
+faster-whisper==1.2.1

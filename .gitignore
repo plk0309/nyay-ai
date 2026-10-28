@@ -27,3 +27,5 @@ build/faiss_index/
 
 __pycache__/ 
 .env 
+
+fastembed_cache/

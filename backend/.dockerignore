@@ -5,3 +5,4 @@ __pycache__
 venv/
 .git
 node_modules
+fastembed_cache/

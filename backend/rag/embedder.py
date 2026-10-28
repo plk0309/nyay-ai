@@ -3,8 +3,6 @@ import faiss
 import numpy as np
 import pickle
 import os
-from sentence_transformers import SentenceTransformer
-from tqdm import tqdm
 from config import EMBEDDING_MODEL, FAISS_INDEX_DIR
 
 # Absolute path to faiss_index at repo root
@@ -12,6 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FAISS_DIR = os.path.join(BASE_DIR, "faiss_index")
 
 def get_embedder():
+    from sentence_transformers import SentenceTransformer  # only needed when building the index locally
     print(f"Loading embedding model: {EMBEDDING_MODEL}")
     return SentenceTransformer(EMBEDDING_MODEL)
 

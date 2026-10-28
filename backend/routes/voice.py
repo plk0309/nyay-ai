@@ -23,7 +23,11 @@ async def transcribe(
         if len(audio_bytes) == 0:
             raise HTTPException(status_code=400, detail="Empty audio file")
 
-        result = transcribe_audio(audio_bytes, language=language)
+        result = transcribe_audio(
+            audio_bytes,
+            language=language,
+            filename=audio.filename or "audio.wav"
+        )
 
         return {
             "text": result["text"],
@@ -52,7 +56,11 @@ async def ask_voice(
     try:
         # Step 1: Transcribe
         audio_bytes = await audio.read()
-        transcription = transcribe_audio(audio_bytes, language=language)
+        transcription = transcribe_audio(
+            audio_bytes,
+            language=language,
+            filename=audio.filename or "audio.wav"
+        )
         user_text = transcription["text"]
 
         if not user_text:

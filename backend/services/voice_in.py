@@ -1,10 +1,9 @@
 # backend/services/voice_in.py
 import os
-import tempfile
-from faster_whisper import WhisperModel
+from groq import Groq
 
-# Load model once at startup — use 'base' for speed, 'medium' for better Hindi accuracy
-model = WhisperModel("base", device="cpu", compute_type="int8")
+# Hosted Whisper via Groq: no local model, so no torch/ctranslate2 in memory
+WHISPER_MODEL = "whisper-large-v3-turbo"
 
 SUPPORTED_LANGUAGES = {
     "hi": "Hindi",
@@ -18,43 +17,42 @@ SUPPORTED_LANGUAGES = {
     "pa": "Punjabi"
 }
 
-def transcribe_audio(audio_bytes: bytes, language: str = None) -> dict:
+_client = None
+
+def _get_client() -> Groq:
+    global _client
+    if _client is None:
+        api_key = os.getenv("GROQ_API_KEY")
+        if not api_key:
+            raise ValueError("GROQ_API_KEY not set in environment")
+        _client = Groq(api_key=api_key)
+    return _client
+
+def transcribe_audio(audio_bytes: bytes, language: str = None, filename: str = "audio.wav") -> dict:
     """
-    Transcribe audio bytes to text using faster-whisper.
+    Transcribe audio bytes to text using Groq's hosted Whisper.
     If language is None, auto-detects language.
-    Returns dict with text, detected_language, confidence
+    Returns dict with text, detected_language, language_probability, duration
     """
-    # Save audio bytes to temp file
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-        tmp.write(audio_bytes)
-        tmp_path = tmp.name
+    kwargs = {}
+    if language:
+        kwargs["language"] = language
 
-    try:
-        # Transcribe
-        segments, info = model.transcribe(
-            tmp_path,
-            language=language,  # None = auto detect
-            beam_size=5,
-            vad_filter=True,  # filters out silence
-            vad_parameters=dict(min_silence_duration_ms=500)
-        )
+    result = _get_client().audio.transcriptions.create(
+        file=(filename, audio_bytes),
+        model=WHISPER_MODEL,
+        response_format="verbose_json",
+        **kwargs,
+    )
 
-        # Collect all segments
-        text = " ".join([segment.text.strip() for segment in segments])
-
-        return {
-            "text": text.strip(),
-            "detected_language": info.language,
-            "language_probability": round(info.language_probability, 2),
-            "duration": round(info.duration, 2)
-        }
-
-    finally:
-        # Always clean up temp file
-        if os.path.exists(tmp_path):
-            os.remove(tmp_path)
+    return {
+        "text": (result.text or "").strip(),
+        "detected_language": language or getattr(result, "language", None),
+        "language_probability": None,  # hosted API doesn't return this
+        "duration": round(getattr(result, "duration", 0) or 0, 2),
+    }
 
 def transcribe_audio_file(file_path: str, language: str = None) -> dict:
     """Transcribe from file path directly"""
     with open(file_path, "rb") as f:
-        return transcribe_audio(f.read(), language)
+        return transcribe_audio(f.read(), language, filename=os.path.basename(file_path))

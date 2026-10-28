@@ -1,5 +1,4 @@
 FROM python:3.12-slim
-# cache-bust: 1
 
 WORKDIR /app
 
@@ -10,14 +9,12 @@ RUN apt-get update && apt-get install -y \
 
 COPY requirements.txt .
 
-# Install numpy first to lock version before anything else
 RUN pip install --no-cache-dir numpy==1.26.4
-
-# Install CPU-only PyTorch
-RUN pip install --no-cache-dir torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
-
-# Install remaining requirements
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Bake the embedding model into the image so cold starts don't re-download it
+ENV FASTEMBED_CACHE=/app/fastembed_cache
+RUN python -c "from fastembed import TextEmbedding; TextEmbedding('sentence-transformers/all-MiniLM-L6-v2', cache_dir='/app/fastembed_cache')"
 
 COPY . .
 
