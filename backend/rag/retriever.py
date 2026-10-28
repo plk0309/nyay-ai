@@ -42,4 +42,26 @@ def retrieve(query: str, top_k: int = 10) -> list[dict]:
         results.append(chunk)
     return results
 
-# ... keep your existing rerank() function unchanged below ...
+def rerank(query: str, retrieved: list[dict], top_n: int = 3) -> list[dict]:
+    """Rerank retrieved chunks using Cohere reranker"""
+    cohere_key = os.getenv("COHERE_API_KEY")
+
+    if not cohere_key:
+        # No Cohere key: just return top_n from FAISS
+        print("No COHERE_API_KEY found, skipping reranking")
+        return retrieved[:top_n]
+
+    try:
+        co = cohere.Client(cohere_key)
+        texts = [r["text"] for r in retrieved]
+        response = co.rerank(
+            query=query,
+            documents=texts,
+            top_n=top_n,
+            model="rerank-english-v3.0"
+        )
+        reranked = [retrieved[r.index] for r in response.results]
+        return reranked
+    except Exception as e:
+        print(f"Reranking failed: {e}, falling back to FAISS order")
+        return retrieved[:top_n]
